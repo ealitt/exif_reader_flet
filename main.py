@@ -33,7 +33,7 @@ class ExifReaderApp:
         self.drop_area = ft.Container(
             content=ft.Column(
                 [
-                    ft.Icon(ft.icons.CLOUD_UPLOAD, size=80, color=ft.colors.BLUE_400),
+                    ft.Icon(ft.Icons.CLOUD_UPLOAD, size=80, color=ft.Colors.BLUE_400),
                     ft.Text(
                         "Drag and drop an image here",
                         size=20,
@@ -43,13 +43,13 @@ class ExifReaderApp:
                     ft.Text(
                         "or click to select",
                         size=14,
-                        color=ft.colors.GREY_600,
+                        color=ft.Colors.GREY_600,
                         text_align=ft.TextAlign.CENTER
                     ),
                     ft.Text(
                         "Supports: JPEG, PNG, TIFF (including 16-bit), and more",
                         size=12,
-                        color=ft.colors.GREY_500,
+                        color=ft.Colors.GREY_500,
                         italic=True,
                         text_align=ft.TextAlign.CENTER
                     ),
@@ -60,10 +60,10 @@ class ExifReaderApp:
             ),
             width=500,
             height=500,
-            border=ft.border.all(2, ft.colors.BLUE_400),
+            border=ft.border.all(2, ft.Colors.BLUE_400),
             border_radius=10,
             alignment=ft.alignment.center,
-            bgcolor=ft.colors.BLUE_50,
+            bgcolor=ft.Colors.BLUE_50,
         )
 
         # File picker
@@ -74,7 +74,7 @@ class ExifReaderApp:
         self.file_info_text = ft.Text(
             "",
             size=12,
-            color=ft.colors.GREY_700,
+            color=ft.Colors.GREY_700,
             weight=ft.FontWeight.BOLD,
             visible=False
         )
@@ -106,10 +106,10 @@ class ExifReaderApp:
                         "Image Metadata",
                         size=24,
                         weight=ft.FontWeight.BOLD,
-                        color=ft.colors.BLUE_900
+                        color=ft.Colors.BLUE_900
                     ),
                     self.file_info_text,
-                    ft.Divider(height=20, color=ft.colors.BLUE_200),
+                    ft.Divider(height=20, color=ft.Colors.BLUE_200),
                     self.metadata_column,
                 ],
                 spacing=10,
@@ -117,7 +117,7 @@ class ExifReaderApp:
             ),
             expand=True,
             padding=20,
-            bgcolor=ft.colors.GREY_100,
+            bgcolor=ft.Colors.GREY_100,
             border_radius=10,
         )
 
@@ -240,7 +240,7 @@ class ExifReaderApp:
                 ft.Text(
                     "No metadata found in this image.",
                     size=14,
-                    color=ft.colors.GREY_600,
+                    color=ft.Colors.GREY_600,
                     italic=True
                 )
             )
@@ -268,21 +268,21 @@ class ExifReaderApp:
                             str(key),
                             size=13,
                             weight=ft.FontWeight.BOLD,
-                            color=ft.colors.BLUE_800
+                            color=ft.Colors.BLUE_800
                         ),
                         ft.Text(
                             formatted_value,
                             size=12,
-                            color=ft.colors.GREY_900,
+                            color=ft.Colors.GREY_900,
                             selectable=True
                         ),
                     ],
                     spacing=3
                 ),
                 padding=10,
-                bgcolor=ft.colors.WHITE,
+                bgcolor=ft.Colors.WHITE,
                 border_radius=5,
-                border=ft.border.all(1, ft.colors.GREY_300)
+                border=ft.border.all(1, ft.Colors.GREY_300)
             )
 
             self.metadata_column.controls.append(entry)
