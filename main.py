@@ -64,6 +64,7 @@ class ExifReaderApp:
             text="Choose Image File",
             icon=ft.Icons.FOLDER_OPEN,
             on_click=lambda _: self.file_picker.pick_files(
+                file_type=ft.FilePickerFileType.CUSTOM,
                 allowed_extensions=["jpg", "jpeg", "png", "tiff", "tif", "bmp", "gif", "webp"]
             ),
             style=ft.ButtonStyle(
@@ -75,6 +76,7 @@ class ExifReaderApp:
         # File picker
         self.file_picker = ft.FilePicker(on_result=self.on_file_picked)
         self.page.overlay.append(self.file_picker)
+        self.page.update()  # Important: update page after adding to overlay
 
         # Current file info
         self.file_info_text = ft.Text(
