@@ -1,10 +1,10 @@
 # EXIF Metadata Reader
 
-A Flet-based Python application for reading and displaying EXIF metadata from images. This application provides an intuitive drag-and-drop interface to view detailed metadata from various image formats, including 16-bit TIFF images.
+A Flet-based Python application for reading and displaying EXIF metadata from images. This application provides an intuitive file picker interface to view detailed metadata from various image formats, including 16-bit TIFF images.
 
 ## Features
 
-- **Drag-and-drop interface** for easy image loading
+- **Simple file picker button** for easy image loading
 - **Side-by-side layout** showing image preview and metadata
 - **Comprehensive metadata extraction** from multiple sources:
   - PIL EXIF data
@@ -37,16 +37,15 @@ pip install -r requirements.txt
 python main.py
 ```
 
-2. The application window will open with a drag-and-drop area on the left
+2. The application window will open with a placeholder on the left and a "Choose Image File" button
 
-3. Either:
-   - **Drag and drop** an image file into the drop area, or
-   - **Click** the drop area to open a file picker dialog
+3. Click the **"Choose Image File"** button to open a file picker dialog and select an image
 
 4. Once an image is loaded:
    - The **left side** shows the image preview
    - The **right side** displays all available metadata in an organized, scrollable list
-   - File information (name, size, format, mode, dimensions) appears at the top
+   - File information (name, size, format, mode, dimensions) appears at the top of the metadata section
+   - Click the button again to load a different image
 
 ## Supported Metadata
 

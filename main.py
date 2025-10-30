@@ -29,41 +29,47 @@ class ExifReaderApp:
             spacing=5
         )
 
-        # Drag and drop area
-        self.drop_area = ft.Container(
+        # Placeholder area when no image is loaded
+        self.placeholder_area = ft.Container(
             content=ft.Column(
                 [
-                    ft.Icon(ft.Icons.CLOUD_UPLOAD, size=80, color=ft.Colors.BLUE_400),
+                    ft.Icon(ft.Icons.IMAGE_OUTLINED, size=100, color=ft.Colors.GREY_400),
                     ft.Text(
-                        "Drag and drop an image here",
+                        "No image loaded",
                         size=20,
-                        weight=ft.FontWeight.BOLD,
-                        text_align=ft.TextAlign.CENTER
-                    ),
-                    ft.Text(
-                        "or click to select",
-                        size=14,
                         color=ft.Colors.GREY_600,
                         text_align=ft.TextAlign.CENTER
                     ),
                     ft.Text(
-                        "Supports: JPEG, PNG, TIFF (including 16-bit), and more",
-                        size=12,
+                        "Click the button below to select an image",
+                        size=14,
                         color=ft.Colors.GREY_500,
-                        italic=True,
                         text_align=ft.TextAlign.CENTER
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 alignment=ft.MainAxisAlignment.CENTER,
-                spacing=10
+                spacing=15
             ),
             width=500,
             height=500,
-            border=ft.border.all(2, ft.Colors.BLUE_400),
+            border=ft.border.all(2, ft.Colors.GREY_300),
             border_radius=10,
             alignment=ft.alignment.center,
-            bgcolor=ft.Colors.BLUE_50,
+            bgcolor=ft.Colors.GREY_50,
+        )
+
+        # File picker button
+        self.pick_file_button = ft.ElevatedButton(
+            text="Choose Image File",
+            icon=ft.Icons.FOLDER_OPEN,
+            on_click=lambda _: self.file_picker.pick_files(
+                allowed_extensions=["jpg", "jpeg", "png", "tiff", "tif", "bmp", "gif", "webp"]
+            ),
+            style=ft.ButtonStyle(
+                color=ft.Colors.WHITE,
+                bgcolor=ft.Colors.BLUE_700,
+            )
         )
 
         # File picker
@@ -84,18 +90,20 @@ class ExifReaderApp:
     def setup_ui(self):
         # Left side - Image display area
         left_side = ft.Container(
-            content=ft.Stack(
+            content=ft.Column(
                 [
-                    self.drop_area,
-                    self.image_display,
-                ]
+                    ft.Stack(
+                        [
+                            self.placeholder_area,
+                            self.image_display,
+                        ]
+                    ),
+                    ft.Container(height=10),
+                    self.pick_file_button,
+                ],
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             ),
             width=500,
-        )
-
-        # Make drop area clickable
-        self.drop_area.on_click = lambda _: self.file_picker.pick_files(
-            allowed_extensions=["jpg", "jpeg", "png", "tiff", "tif", "bmp", "gif", "webp"]
         )
 
         # Right side - Metadata display
@@ -164,7 +172,7 @@ class ExifReaderApp:
 
             self.image_display.src_base64 = img_str
             self.image_display.visible = True
-            self.drop_area.visible = False
+            self.placeholder_area.visible = False
 
             # Update file info
             file_name = os.path.basename(file_path)
